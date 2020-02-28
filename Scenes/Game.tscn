@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=2]
@@ -6,12 +6,18 @@
 [ext_resource path="res://Scripts/Score.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Lives.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Starting.gd" type="Script" id=6]
+[ext_resource path="res://origsonic.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 16 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 533.016, 313.37 )
+scale = Vector2( 3.05448, 2.80755 )
+texture = ExtResource( 7 )
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -25,13 +31,19 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="Paddle"]
-margin_left = -72.0
-margin_top = -16.0
-margin_right = 72.0
-margin_bottom = 16.0
+margin_left = -72.0001
+margin_top = -14.5858
+margin_right = 71.9999
+margin_bottom = 17.4142
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="Paddle"]
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
@@ -217,11 +229,16 @@ text = "Lives:"
 script = ExtResource( 5 )
 
 [node name="Starting" type="Label" parent="."]
-margin_right = 1024.0
-margin_bottom = 112.0
+margin_left = 2.82842
+margin_top = 4.24265
+margin_right = 1026.83
+margin_bottom = 116.243
 align = 1
 valign = 1
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="Starting"]
 wait_time = 10.0
