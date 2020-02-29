@@ -6,6 +6,12 @@ onready var Camera = get_node("/root/Game/Camera")
 onready var Starting = get_node("/root/Game/Starting")
 onready var Comet = get_node("/root/Game/Comet")
 
+#Sounds
+onready var Bloop = get_node("/root/Game/Bloop")
+onready var Music = get_node("/root/Game/Music")
+onready var Cheer = get_node("/root/Game/Cheer")
+onready var Blurp = get_node("/root/Game/Blurp")
+
 var _decay_rate = 0.8
 var _max_offset = 4
 var trauma_color = Color(1,1,1,1)
@@ -64,14 +70,18 @@ func _physics_process(delta):
 		Camera.add_trauma(2.0)
 		#add_trauma(2.0)
 		if body.is_in_group("Tiles"):
+			Bloop.play()
 			Game.change_score(body.points)
 			_add_color(1.0)
 			body.find_node("Smoke").emitting = true
 			body.kill()
 		if body.name == "Paddle":
+			Cheer.play()
 			var tile_row = get_tree().get_nodes_in_group("Tile Row")
 			for tile in tile_row:
 				tile.add_trauma(0.5)
+		if body.name == "Wall":
+			Blurp.play()
 
 	if position.y > get_viewport().size.y:
 		Game.change_lives(-1)

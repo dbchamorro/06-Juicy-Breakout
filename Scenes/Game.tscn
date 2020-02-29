@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://origsonic.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Tile Row.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=9]
+[ext_resource path="res://bloop_x.wav" type="AudioStream" id=10]
+[ext_resource path="res://Off-Limits/Off Limits.wav" type="AudioStream" id=11]
+[ext_resource path="res://applause2_x.wav" type="AudioStream" id=12]
+[ext_resource path="res://blurp_x.wav" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 16 )
@@ -262,4 +266,21 @@ __meta__ = {
 wait_time = 10.0
 
 [node name="Comet" type="Node2D" parent="."]
+
+[node name="Bloop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -22.515
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -13.938
+autoplay = true
+
+[node name="Cheer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -22.515
+
+[node name="Blurp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -13.938
 [connection signal="timeout" from="Starting/Timer" to="Starting" method="_on_Timer_timeout"]
