@@ -1,6 +1,8 @@
 extends RigidBody2D
 
+
 onready var Game = get_node("/root/Game")
+onready var Camera = get_node("/root/Game/Camera")
 onready var Starting = get_node("/root/Game/Starting")
 onready var Comet = get_node("/root/Game/Comet")
 
@@ -26,8 +28,7 @@ func _ready():
 	contact_monitor = true
 	set_max_contacts_reported(4)
 	_start_position = $ColorRect.rect_position
-	#_start_size =$ColorRect.get_transform().size
-	_normal_color =$ColorRect.color
+	_normal_color = $ColorRect.color
 
 func _process(delta):
 	if _trauma > 0:
@@ -55,16 +56,16 @@ func _process(delta):
 		if t.rect_size.x <= 0.5 or t.color.a <= 0:
 			t.queue_free()
 
-
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	# Check for collisions
 	var bodies = get_colliding_bodies()
 	for body in bodies:
+		Camera.add_trauma(2.0)
 		#add_trauma(2.0)
 		if body.is_in_group("Tiles"):
 			Game.change_score(body.points)
-			#add_color(1.0)
+			_add_color(1.0)
 			body.find_node("Smoke").emitting = true
 			body.kill()
 		if body.name == "Paddle":
