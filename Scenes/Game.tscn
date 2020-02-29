@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/Lives.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Starting.gd" type="Script" id=6]
 [ext_resource path="res://origsonic.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Tile Row.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 16 )
@@ -52,7 +53,10 @@ polygon = PoolVector2Array( 0, 632, 0, 0, 1024, 0, 1024, 632, 1064, 632, 1064, -
 
 [node name="Tiles" type="Node2D" parent="."]
 
-[node name="Tile Row 1" type="Node2D" parent="Tiles"]
+[node name="Tile Row 1" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 8 )
 
 [node name="Tile" parent="Tiles/Tile Row 1" instance=ExtResource( 3 )]
 position = Vector2( 184, 296 )
@@ -84,7 +88,10 @@ position = Vector2( 760, 296 )
 [node name="Tile10" parent="Tiles/Tile Row 1" instance=ExtResource( 3 )]
 position = Vector2( 832, 296 )
 
-[node name="Tile Row 2" type="Node2D" parent="Tiles"]
+[node name="Tile Row 2" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 8 )
 
 [node name="Tile" parent="Tiles/Tile Row 2" instance=ExtResource( 3 )]
 position = Vector2( 184, 256 )
@@ -116,7 +123,10 @@ position = Vector2( 760, 256 )
 [node name="Tile10" parent="Tiles/Tile Row 2" instance=ExtResource( 3 )]
 position = Vector2( 832, 256 )
 
-[node name="Tile Row 3" type="Node2D" parent="Tiles"]
+[node name="Tile Row 3" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 8 )
 
 [node name="Tile" parent="Tiles/Tile Row 3" instance=ExtResource( 3 )]
 position = Vector2( 184, 216 )
@@ -148,7 +158,10 @@ position = Vector2( 760, 216 )
 [node name="Tile10" parent="Tiles/Tile Row 3" instance=ExtResource( 3 )]
 position = Vector2( 832, 216 )
 
-[node name="Tile Row 4" type="Node2D" parent="Tiles"]
+[node name="Tile Row 4" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 8 )
 
 [node name="Tile" parent="Tiles/Tile Row 4" instance=ExtResource( 3 )]
 position = Vector2( 184, 176 )
@@ -180,7 +193,10 @@ position = Vector2( 760, 176 )
 [node name="Tile10" parent="Tiles/Tile Row 4" instance=ExtResource( 3 )]
 position = Vector2( 832, 176 )
 
-[node name="Tile Row 5" type="Node2D" parent="Tiles"]
+[node name="Tile Row 5" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 8 )
 
 [node name="Tile" parent="Tiles/Tile Row 5" instance=ExtResource( 3 )]
 position = Vector2( 184, 136 )
@@ -242,4 +258,6 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="Starting"]
 wait_time = 10.0
+
+[node name="Comet" type="Node2D" parent="."]
 [connection signal="timeout" from="Starting/Timer" to="Starting" method="_on_Timer_timeout"]
